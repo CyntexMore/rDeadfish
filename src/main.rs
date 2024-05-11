@@ -2,46 +2,34 @@ use std::io;
 use std::io::Write;
 use std::process;
 
-fn interpret(input: String) -> Vec<i32> {
-    let mut accumulator = 0;
+fn interpret(input: &str) -> Option<Vec<u8>> {
+    let mut accumulator: u8 = 0;
     let mut result = Vec::new();
 
-    // go through all of the characters one by one and make them do their thing
     for exp in input.chars() {
-        if accumulator == 256 || accumulator < 0 {
-            accumulator = 0;
-        }
-
         match exp {
-            'i' => accumulator += 1,           // +1 to the accumulator
-            'd' => accumulator -= 1,           // -1 from the accumulator
-            's' => accumulator *= accumulator, // squares the value of the accumulator
-            'o' => result.push(accumulator),   // prints the value of the accumulator
-            'q' => process::exit(0),           // quits the program
+            'i' => accumulator = accumulator.overflowing_add(1).0,
+            'd' => accumulator = accumulator.overflowing_sub(1).0,
+            's' => accumulator *= accumulator,
+            'o' => result.push(accumulator),
+            'q' => return None,
             _ => (),
         }
     }
-
-    result
+    Some(result)
 }
 
 fn main() {
     loop {
-        // get user input
         let mut input = String::new();
         print!(">> ");
         io::stdout().flush().unwrap();
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read input!");
+        io::stdin().read_line(&mut input).expect("Failed to read input!");
 
-        let ascii_values = interpret(input);
-
-        // print the results
-        let mut output = String::new();
-        for i in ascii_values {
-            output = format!("{}{}", output, i);
-        }
-        println!("{}", output);
+        let output = match interpret(&input) {
+            Some(o) => o,
+            None => process::exit(0),
+        };
+        println!("{:?}", output);
     }
 }
