@@ -1,6 +1,6 @@
 # rDeadfish
 
-__rDeadfish__ is a Deadfish interpreter written in Rust. It's very  minimalistic and only consists of thirty something lines of code.
+__rDeadfish__ is a Deadfish interpreter written in Rust. It's very minimalistic and only consists of forty something lines of code.
 
 "Error handling is bloat." - SaynedBread
 
@@ -8,10 +8,10 @@ __rDeadfish__ is a Deadfish interpreter written in Rust. It's very  minimalistic
 
 __rDeadfish__ can understand 5 commands:
 
-| Command | Description                                                |
-|:-------:|------------------------------------------------------------|
-| i       | increments the accumulator                                 |
-| d       | decrements the accumulator                                 |
-| s       | squares the accumulator                                    |
-| o       | "prints" the value of the accumulator                      |
-| q       | quits the program - it's recommended to run this by itself |
+| Command | Description                                                              |
+|:-------:|--------------------------------------------------------------------------|
+| i       | increments the accumulator                                               |
+| d       | decrements the accumulator                                               |
+| s       | squares the accumulator                                                  |
+| o       | "prints" the value of the accumulator                                    |
+| q       | (non-default) quits the program - it's recommended to run this by itself |
