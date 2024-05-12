@@ -4,6 +4,16 @@ __rDeadfish__ is a Deadfish interpreter written in Rust. It's very minimalistic 
 
 "Error handling is bloat." - SaynedBread
 
+## Building
+
+You can simply build __rDeadfish__ with cargo.
+
+```sh
+git clone https://github.com/CyntexMore/rDeadfish.git
+cd rDeadfish
+cargo build
+```
+
 ## Usage
 
 __rDeadfish__ can understand 5 commands:
@@ -15,3 +25,5 @@ __rDeadfish__ can understand 5 commands:
 | s       | squares the accumulator                                                  |
 | o       | "prints" the value of the accumulator                                    |
 | q       | (non-default) quits the program - it's recommended to run this by itself |
+
+By default __rDeadfish__ open a Deadfish shell but you can read "source code" from a `.df` file too, if you want to by launching __rDeadfish__ with `./rDeadfish </path/to/file>` or with `cargo run -- /path/to/file` if you haven't built it beforehand.
