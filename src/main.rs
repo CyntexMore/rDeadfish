@@ -1,5 +1,6 @@
-use std::io;
-use std::io::Write;
+use std::env::args;
+use std::fs::File;
+use std::io::{self, stdin, stdout, BufRead, BufReader, Error, Write};
 use std::process;
 
 fn interpret(input: &str) -> Option<Vec<i32>> {
@@ -12,8 +13,8 @@ fn interpret(input: &str) -> Option<Vec<i32>> {
         }
 
         match exp {
-            'i' => accumulator = accumulator.overflowing_add(1).0,
-            'd' => accumulator = accumulator.overflowing_sub(1).0,
+            'i' => accumulator += 1,
+            'd' => accumulator -= 1,
             's' => accumulator *= accumulator,
             'o' => result.push(accumulator),
             'q' => return None,
@@ -23,22 +24,42 @@ fn interpret(input: &str) -> Option<Vec<i32>> {
     Some(result)
 }
 
-fn main() {
-    loop {
-        let mut input = String::new();
-        print!(">> ");
-        io::stdout().flush().unwrap();
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read input!");
+fn main() -> Result<(), Error> {
+    let args: Vec<String> = args().collect();
+    if !(args.len() > 1) {
+        loop {
+            let mut input = String::new();
+            print!(">> ");
+            stdout().flush().unwrap();
+            stdin()
+                .read_line(&mut input)
+                .expect("Failed to read input!");
 
-        let mut output = String::new();
-        for i in match interpret(&input) {
-            Some(o) => o,
-            None => process::exit(0),
-        } {
-            output = format!("{}{}", output, i);
+            let mut output = String::new();
+            for i in match interpret(&input) {
+                Some(o) => o,
+                None => process::exit(0),
+            } {
+                output = format!("{}{}", output, i);
+            }
+            println!("{}", output);
         }
-        println!("{}", output);
+    } else {
+        let file_path = &args[1];
+        let file = File::open(file_path)?;
+        let buffer = BufReader::new(file);
+
+        for instructions in buffer.lines() {
+            let mut output = String::from(">> ");
+            for i in match interpret(&instructions?) {
+                Some(o) => o,
+                None => process::exit(0),
+            } {
+                output = format!("{}{}", output, i);
+            }
+            println!("{}", output);
+        }
     }
+
+    Ok(())
 }
