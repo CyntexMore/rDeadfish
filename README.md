@@ -1,8 +1,13 @@
 # rDeadfish
 
-__rDeadfish__ is a Deadfish interpreter written in Rust. It's very minimalistic and only consists of thirty something lines of code.
+__rDeadfish__ is a free and open-source Deadfish interpreter written in Rust. It's very minimalistic and only consists of thirty something lines of code.
 
 "Error handling is bloat." - SaynedBread
+
+## Requirements
+
+- Rust
+- A clone of this repo
 
 ## Building
 
