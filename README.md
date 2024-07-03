@@ -6,7 +6,7 @@ __rDeadfish__ is a blazingly fast, free and open-source Deadfish interpreter wri
 
 ## Requirements
 
-- Rust
+- A local installation of Rust
 - A clone of this repo
 
 ## Building
