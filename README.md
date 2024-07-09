@@ -1,6 +1,6 @@
 # rDeadfish
 
-__rDeadfish__ is a blazingly fast, free and open-source Deadfish interpreter written in Rust. It's very minimalistic and only consists of 58 lines of code.
+**rDeadfish** is a blazingly fast, free and open-source Deadfish interpreter written in Rust. It's very minimalistic and only consists of 58 lines of code.
 
 "Error handling is bloat." - SaynedBread
 
@@ -11,7 +11,7 @@ __rDeadfish__ is a blazingly fast, free and open-source Deadfish interpreter wri
 
 ## Building
 
-You can simply build __rDeadfish__ with cargo.
+You can simply build **rDeadfish** with cargo.
 
 ```sh
 git clone https://github.com/CyntexMore/rDeadfish.git
@@ -21,7 +21,7 @@ cargo build --release
 
 ## Usage
 
-__rDeadfish__ can understand 5 commands:
+**rDeadfish** can understand 5 commands:
 
 | Command | Description                                                              |
 |:-------:|--------------------------------------------------------------------------|
@@ -31,4 +31,8 @@ __rDeadfish__ can understand 5 commands:
 | o       | "prints" the value of the accumulator                                    |
 | q       | (non-default) quits the program - it's recommended to run this by itself |
 
-By default __rDeadfish__ opens a Deadfish shell but you can read "source code" from a `.df` file too if you want to by launching __rDeadfish__ with `./target/release/rDeadfish </path/to/file>` or with `cargo run -- </path/to/file>` if you haven't built it beforehand.
+By default **rDeadfish** opens a Deadfish shell but you can read "source code" from well, any file (although it's recommended to use the `.df` file extension for clarity) by launching **rDeadfish** with `./target/release/rDeadfish </path/to/file>` or with `cargo run -- </path/to/file>` if you haven't built it beforehand.
+
+## Thanks
+
+Thanks to [pml68](https://github.com/pml68/) **rDeadfish** has the ability to read from "source code".
